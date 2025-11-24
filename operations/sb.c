@@ -1,0 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sb.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rdinis <rdinis@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/22 12:19:12 by rdinis            #+#    #+#             */
+/*   Updated: 2025/11/22 12:22:52 by rdinis           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../push_swap.h"
+
+int	ft_swap_b(t_pile **p)
+{
+	t_pile	*tmp;
+	int		first;
+	int		second;
+
+	if (ft_length(*p) <= 1)
+		return (0);
+	tmp = NULL;
+	first = ft_pop(p);
+	second = ft_pop(p);
+	while (*p != NULL)
+	{
+		ft_push(&tmp, ft_pop(p));
+	}
+	ft_push(p, second);
+	ft_push(p, first);
+	while (tmp != NULL)
+	{
+		ft_push(p, ft_pop(&tmp));
+	}
+	write(1, "sb\n", 3);
+	return (1);
+}
