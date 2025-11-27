@@ -6,7 +6,7 @@
 /*   By: rdinis <rdinis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:05:38 by rdinis            #+#    #+#             */
-/*   Updated: 2025/11/21 18:01:05 by rdinis           ###   ########.fr       */
+/*   Updated: 2025/11/27 11:47:14 by rdinis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ void	ft_view(t_pile *p)
 	while (p)
 	{
 		ft_putnbr_fd(p->valeur, 1);
+		ft_putstr_fd(" : ", 1);
+		ft_putnbr_fd(p->index, 1);
+		ft_putstr_fd("\n", 1);
 		p = p->next;
 	}
 }

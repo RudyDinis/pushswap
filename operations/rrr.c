@@ -6,7 +6,7 @@
 /*   By: rdinis <rdinis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 19:01:50 by rdinis            #+#    #+#             */
-/*   Updated: 2025/11/24 19:03:06 by rdinis           ###   ########.fr       */
+/*   Updated: 2025/11/25 14:38:59 by rdinis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	rrb(t_pile **b)
 int	ft_rrr(t_pile **a, t_pile **b)
 {
 	rra(a);
-	rrb(b);\
+	rrb(b);
 	write(1, "rrr\n", 4);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: rdinis <rdinis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:13:31 by rdinis            #+#    #+#             */
-/*   Updated: 2025/11/21 17:36:50 by rdinis           ###   ########.fr       */
+/*   Updated: 2025/11/27 12:03:55 by rdinis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,33 +45,6 @@ size_t	get_len(long n)
 	return (len);
 }
 
-char	*ft_itoa(int n)
-{
-	char		*res;
-	size_t		len;
-	long		nbr;
-
-	nbr = n;
-	len = get_len(nbr);
-	res = malloc(len + 1);
-	if (!res)
-		return (NULL);
-	if (nbr < 0)
-	{
-		res[0] = '-';
-		nbr *= -1;
-	}
-	res[len] = '\0';
-	len--;
-	while (nbr > 9)
-	{
-		res[len] = (nbr % 10) + '0';
-		nbr = nbr / 10;
-		len--;
-	}
-	res[len] = nbr + '0';
-	return (res);
-}
 void	ft_putnbr_fd(int n, int fd)
 {
 	char	c;

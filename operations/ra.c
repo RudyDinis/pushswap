@@ -6,15 +6,25 @@
 /*   By: rdinis <rdinis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 13:32:15 by rdinis            #+#    #+#             */
-/*   Updated: 2025/11/24 17:51:29 by rdinis           ###   ########.fr       */
+/*   Updated: 2025/11/27 14:46:59 by rdinis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	ft_ra(t_pile **a)
+void	ft_ra(t_pile **a)
 {
-	ft_push(a, ft_pop(a));
+	t_pile	*first;
+	t_pile	*last;
+
+	if (!a || !*a || !(*a)->next)
+		return ;
+	first = *a;
+	*a = first->next;
+	first->next = NULL;
+	last = *a;
+	while (last->next)
+		last = last->next;
+	last->next = first;
 	write(1, "ra\n", 3);
-	return (1);
 }
