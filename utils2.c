@@ -6,7 +6,7 @@
 /*   By: rdinis <rdinis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 11:51:05 by rdinis            #+#    #+#             */
-/*   Updated: 2025/11/27 14:44:51 by rdinis           ###   ########.fr       */
+/*   Updated: 2025/12/08 16:47:34 by rdinis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,23 @@ int	find_bigger(t_pile *a)
 		a = (a)-> next;
 	}
 	return (max);
+}
+
+void	*ft_calloc( size_t elementCount, size_t elementSize )
+{
+	unsigned char	*pointer;
+	size_t			i;
+
+	if (elementCount != 0 && elementSize > SIZE_MAX / elementCount)
+		return (NULL);
+	pointer = malloc(elementCount * elementSize);
+	if (!pointer)
+		return (NULL);
+	i = 0;
+	while (i < elementCount * elementSize)
+	{
+		pointer[i] = 0;
+		i++;
+	}
+	return (pointer);
 }

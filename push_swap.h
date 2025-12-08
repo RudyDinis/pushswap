@@ -6,7 +6,7 @@
 /*   By: rdinis <rdinis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:28:35 by rdinis            #+#    #+#             */
-/*   Updated: 2025/11/27 14:45:06 by rdinis           ###   ########.fr       */
+/*   Updated: 2025/12/08 16:32:35 by rdinis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
 
 typedef struct t_pile
 {
@@ -47,5 +48,9 @@ size_t	ft_strlen(const char *s);
 void	ft_pa(t_pile **a, t_pile **b);
 void	ft_pb(t_pile **a, t_pile **b);
 int		find_bigger(t_pile *a);
+char	**ft_split(const char *s, char c);
+void	*ft_calloc( size_t elementCount, size_t elementSize );
+int		word_count(const char *str, char c);
+void	*free_all(char **strs, int count, int start);
 
 #endif

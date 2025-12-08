@@ -4,7 +4,7 @@ LIBFT = libft
 SRCS =	main.c pile.c utils.c utils2.c operations/sa.c operations/sb.c \
 		operations/ss.c operations/pb.c operations/pa.c operations/ra.c \
 		operations/rb.c operations/rr.c operations/rra.c operations/rrb.c \
-		operations/rrr.c
+		operations/rrr.c ft_split.c
 
 OBJS = $(SRCS:.c=.o)
 

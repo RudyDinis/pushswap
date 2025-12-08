@@ -6,7 +6,7 @@
 /*   By: rdinis <rdinis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:05:38 by rdinis            #+#    #+#             */
-/*   Updated: 2025/11/27 11:47:14 by rdinis           ###   ########.fr       */
+/*   Updated: 2025/12/08 11:25:00 by rdinis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_push(t_pile **p, int val)
 	if (!element)
 		ft_putstr_fd("Error", 2);
 	element->valeur = val;
+	element->next = NULL;
 	if (!temp)
 		*p = element;
 	else

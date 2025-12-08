@@ -6,7 +6,7 @@
 /*   By: rdinis <rdinis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:26:51 by rdinis            #+#    #+#             */
-/*   Updated: 2025/11/27 14:46:14 by rdinis           ###   ########.fr       */
+/*   Updated: 2025/12/08 16:47:15 by rdinis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,38 +81,52 @@ int	assign_index(t_pile **a)
 	return (doublon);
 }
 
-int	init(char	**argv, int argc, t_pile **a)
+int	init(char	**argv, int argc, t_pile **a, int start)
 {
 	int	i;
 	int	res;
 
-	i = 1;
+	i = start;
 	while (argv[i])
 	{
 		res = ft_atoi(argv[i]);
+		if ((res < 0 && argv[i][0] != '-') || (res > 0 && argv[i][0] == '-'))
+			return (-1);
 		if (res == 0 && ft_strncmp(argv[i], "0", 1))
 			return (-1);
 		ft_push(a, res);
 		i++;
 	}
-	if (assign_index(a) > argc - 1)
+	if (assign_index(a) > argc)
 		return (-1);
 	return (1);
 }
 
-int	main(int argc, char	**argv)
+int	main(int argc, char	**arg)
 {
 	t_pile	*a;
 	t_pile	*b;
+	char	**argv;
 	int		max;
+	int		start;
 
 	a = NULL;
 	b = NULL;
+	start = 1;
 	if (argc == 1)
-		return (ft_putstr_fd("Error\n", 2));
-	if (init(argv, argc, &a) == -1)
+		return (0);
+	if (argc == 2)
+	{
+		argv = ft_split(arg[1], ' ');
+		argc = word_count(arg[1], ' ');
+		start = 0;
+	}
+	else
+		argv = arg;
+	if (init(argv, argc, &a, start) == -1)
 		return (ft_putstr_fd("Error\n", 2));
 	max = find_bigger(a);
 	resolve(&a, &b, max);
-	ft_view(a);
+	free_all(argv, argc, start);
+	return (ft_clear(&a), 0);
 }
