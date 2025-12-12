@@ -6,7 +6,7 @@
 /*   By: rdinis <rdinis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:26:51 by rdinis            #+#    #+#             */
-/*   Updated: 2025/12/08 16:47:15 by rdinis           ###   ########.fr       */
+/*   Updated: 2025/12/12 14:21:40 by rdinis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ void	resolve(t_pile **a, t_pile **b, int max)
 	int		bit;
 	int		size;
 	t_pile	*tmp;
+	int		i;
 
 	max_bits = 0;
 	while ((max >> max_bits) != 0)
 		max_bits++;
 	bit = 0;
+	i = 0;
 	while (bit < max_bits)
 	{
 		size = 0;
