@@ -59,7 +59,7 @@ char	*ft_split2(const char *str, int start, int end)
 	return (word);
 }
 
-void	*free_all(char **strs, int count, int start)
+void	*free_(char **strs, int count, int start)
 {
 	int	i;
 
@@ -94,7 +94,7 @@ char	**ft_split(const char *s, char c)
 		{
 			res[j] = ft_split2(s, s_word, i);
 			if (!(res[j]))
-				return (free_all(res, j, 0));
+				return (free_(res, j, 0));
 			s_word = -1;
 			j++;
 		}

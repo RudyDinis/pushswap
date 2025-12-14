@@ -51,6 +51,7 @@ int		find_bigger(t_pile *a);
 char	**ft_split(const char *s, char c);
 void	*ft_calloc( size_t elementCount, size_t elementSize );
 int		word_count(const char *str, char c);
-void	*free_all(char **strs, int count, int start);
+void	*free_(char **strs, int count, int start);
+int		is_sorted(t_pile *a);
 
 #endif

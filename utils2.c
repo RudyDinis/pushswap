@@ -80,3 +80,14 @@ void	*ft_calloc( size_t elementCount, size_t elementSize )
 	}
 	return (pointer);
 }
+
+int	is_sorted(t_pile *a)
+{
+	while (a && a->next)
+	{
+		if (a->valeur > a->next->valeur)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}

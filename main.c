@@ -33,13 +33,13 @@ void	resolve(t_pile **a, t_pile **b, int max)
 	int		bit;
 	int		size;
 	t_pile	*tmp;
-	int		i;
 
+	if (is_sorted(*a))
+		return ;
 	max_bits = 0;
 	while ((max >> max_bits) != 0)
 		max_bits++;
 	bit = 0;
-	i = 0;
 	while (bit < max_bits)
 	{
 		size = 0;
@@ -126,9 +126,9 @@ int	main(int argc, char	**arg)
 	else
 		argv = arg;
 	if (init(argv, argc, &a, start) == -1)
-		return (ft_putstr_fd("Error\n", 2));
+		return (free_(argv, argc, start), ft_clear(&a), write(2, "Error\n", 6));
 	max = find_bigger(a);
 	resolve(&a, &b, max);
-	free_all(argv, argc, start);
+	free_(argv, argc, start);
 	return (ft_clear(&a), 0);
 }
