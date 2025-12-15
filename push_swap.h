@@ -6,7 +6,7 @@
 /*   By: rdinis <rdinis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:28:35 by rdinis            #+#    #+#             */
-/*   Updated: 2025/12/08 16:32:35 by rdinis           ###   ########.fr       */
+/*   Updated: 2025/12/15 17:49:35 by rdinis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,8 @@ void	*ft_calloc( size_t elementCount, size_t elementSize );
 int		word_count(const char *str, char c);
 void	*free_(char **strs, int count, int start);
 int		is_sorted(t_pile *a);
+void	resolve2(t_pile **a, t_pile **b, int bit, int size);
+void	resolve(t_pile **a, t_pile **b, int max);
+void	resolve_simple(t_pile **a, t_pile **b, int max);
 
 #endif

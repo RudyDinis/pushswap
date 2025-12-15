@@ -6,7 +6,7 @@
 /*   By: rdinis <rdinis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:13:31 by rdinis            #+#    #+#             */
-/*   Updated: 2025/11/27 12:03:55 by rdinis           ###   ########.fr       */
+/*   Updated: 2025/12/15 17:19:40 by rdinis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,28 +89,29 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 int	ft_atoi(const char *src)
 {
-	int	indice;
+	int	i;
 	int	signe;
 	int	res;
 
-	indice = 0;
+	i = 0;
 	signe = 1;
 	res = 0;
-	while (src[indice] == '\t' || src[indice] == '\n'
-		|| src[indice] == ' ' || src[indice] == '\v'
-		|| src[indice] == '\f' || src[indice] == '\r')
+	while (src[i] == '\t' || src[i] == '\n'
+		|| src[i] == ' ' || src[i] == '\v' || src[i] == '\f' || src[i] == '\r')
+		i++;
+	while (src[i] == '-' || src[i] == '+')
 	{
-		indice++;
-	}
-	while (src[indice] == '-' || src[indice] == '+')
-	{
-		if (src[indice] == '-')
+		if (src[i] == '-')
 			signe = signe * -1;
-		if (src[indice + 1] == '-' || src[indice + 1] == '+')
+		if (src[i + 1] == '-' || src[i + 1] == '+')
 			return (0);
-		indice++;
+		i++;
 	}
-	while (src[indice] >= '0' && src[indice] <= '9')
-		res = res * 10 + (src[indice++] - 48);
+	while (src[i])
+	{
+		if (!(src[i] >= '0' && src[i] <= '9'))
+			return (0);
+		res = res * 10 + (src[i++] - 48);
+	}
 	return (signe * res);
 }

@@ -6,55 +6,11 @@
 /*   By: rdinis <rdinis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:26:51 by rdinis            #+#    #+#             */
-/*   Updated: 2025/12/12 14:21:40 by rdinis           ###   ########.fr       */
+/*   Updated: 2025/12/15 18:23:37 by rdinis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	resolve2(t_pile **a, t_pile **b, int bit, int size)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		if ((((*a)->index >> bit) & 1) == 1)
-			ft_ra(a);
-		else
-			ft_pb(a, b);
-		i++;
-	}
-}
-
-void	resolve(t_pile **a, t_pile **b, int max)
-{
-	int		max_bits;
-	int		bit;
-	int		size;
-	t_pile	*tmp;
-
-	if (is_sorted(*a))
-		return ;
-	max_bits = 0;
-	while ((max >> max_bits) != 0)
-		max_bits++;
-	bit = 0;
-	while (bit < max_bits)
-	{
-		size = 0;
-		tmp = *a;
-		while (tmp)
-		{
-			size++;
-			tmp = tmp->next;
-		}
-		resolve2(a, b, bit, size);
-		while (*b)
-			ft_pa(a, b);
-		bit++;
-	}
-}
 
 int	assign_index(t_pile **a)
 {
@@ -95,7 +51,9 @@ int	init(char	**argv, int argc, t_pile **a, int start)
 		if ((res < 0 && argv[i][0] != '-') || (res > 0 && argv[i][0] == '-'))
 			return (-1);
 		if (res == 0 && ft_strncmp(argv[i], "0", 1))
+		{
 			return (-1);
+		}
 		ft_push(a, res);
 		i++;
 	}
@@ -104,31 +62,43 @@ int	init(char	**argv, int argc, t_pile **a, int start)
 	return (1);
 }
 
+void	choose_resolve(t_pile **a, t_pile **b, int max)
+{
+	if (max == 2)
+		return (resolve_simple(a, b, max));
+	resolve(a, b, max);
+}
+
+int	argc_two(t_pile **a, t_pile **b, char	**arg)
+{
+	char	**argv;
+	int		argc;
+	int		max;
+
+	argv = ft_split(arg[1], ' ');
+	argc = word_count(arg[1], ' ');
+	if (init(argv, argc, a, 0) == -1)
+		return (free_(argv, argc, 0), ft_clear(a), write(2, "Error\n", 6));
+	max = find_bigger(*a);
+	return (choose_resolve(a, b, max), free_(argv, argc, 0), ft_clear(a), 0);
+}
+
 int	main(int argc, char	**arg)
 {
 	t_pile	*a;
 	t_pile	*b;
 	char	**argv;
 	int		max;
-	int		start;
 
 	a = NULL;
 	b = NULL;
-	start = 1;
 	if (argc == 1)
 		return (0);
 	if (argc == 2)
-	{
-		argv = ft_split(arg[1], ' ');
-		argc = word_count(arg[1], ' ');
-		start = 0;
-	}
-	else
-		argv = arg;
-	if (init(argv, argc, &a, start) == -1)
-		return (free_(argv, argc, start), ft_clear(&a), write(2, "Error\n", 6));
+		return (argc_two(&a, &b, arg));
+	argv = arg;
+	if (init(argv, argc, &a, 1) == -1)
+		return (free_(argv, argc, 1), ft_clear(&a), write(2, "Error\n", 6));
 	max = find_bigger(a);
-	resolve(&a, &b, max);
-	free_(argv, argc, start);
-	return (ft_clear(&a), 0);
+	return (choose_resolve(&a, &b, max), free_(argv, argc, 1), ft_clear(&a), 0);
 }
