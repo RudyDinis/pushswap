@@ -35,6 +35,7 @@ char	*ft_itoa(int n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_length(t_pile *p);
 void	ft_clear(t_pile **p);
+int		ft_swap_a(t_pile **p);
 int		ft_swap_b(t_pile **p);
 int		ft_ss(t_pile **a, t_pile **b);
 void	ft_ra(t_pile **a);
@@ -55,6 +56,10 @@ void	*free_(char **strs, int count, int start);
 int		is_sorted(t_pile *a);
 void	resolve2(t_pile **a, t_pile **b, int bit, int size);
 void	resolve(t_pile **a, t_pile **b, int max);
-void	resolve_simple(t_pile **a, t_pile **b, int max);
+int		find_min_pos(t_pile *a);
+void	sort_5(t_pile **a, t_pile **b);
+void	sort_3(t_pile **a);
+void	sort_2(t_pile **a);
+int		ft_lstsize(t_pile *a);
 
 #endif

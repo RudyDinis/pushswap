@@ -64,9 +64,16 @@ int	init(char	**argv, int argc, t_pile **a, int start)
 
 void	choose_resolve(t_pile **a, t_pile **b, int max)
 {
-	if (max == 2)
-		return (resolve_simple(a, b, max));
-	resolve(a, b, max);
+	if (is_sorted(*a))
+		return ;
+	if (max == 1)
+		sort_2(a);
+	else if (max == 2)
+		sort_3(a);
+	else if (max <= 4)
+		sort_5(a, b);
+	else
+		resolve(a, b, max);
 }
 
 int	argc_two(t_pile **a, t_pile **b, char	**arg)

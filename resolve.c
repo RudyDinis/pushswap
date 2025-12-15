@@ -56,26 +56,55 @@ void	resolve(t_pile **a, t_pile **b, int max)
 	}
 }
 
-void	resolve_simple(t_pile **a, t_pile **b, int max)
+void	sort_2(t_pile **a)
 {
-	t_pile	*tmp;
-	int		i;
+	if ((*a)->index > (*a)->next->index)
+		ft_swap_a(a);
+}
 
-	(void) b;
-	i = 0;
-	while (i != max)
+void	sort_3(t_pile **a)
+{
+	int	f;
+	int	s;
+	int	t;
+
+	f = (*a)->index;
+	s = (*a)->next->index;
+	t = (*a)->next->next->index;
+	if (f > s && s < t && f < t)
+		ft_swap_a(a);
+	else if (f > s && s > t)
 	{
-		tmp = *a;
-		while (tmp)
-		{
-			if (tmp->index == i)
-			{
-				ft_rra(a);
-				i++;
-				ft_view(*a);
-				break ;
-			}
-			tmp = tmp ->next;
-		}
+		ft_swap_a(a);
+		ft_rra(a);
 	}
+	else if (f > s && s < t && f > t)
+		ft_ra(a);
+	else if (f < s && s > t && f < t)
+	{
+		ft_swap_a(a);
+		ft_ra(a);
+	}
+	else if (f < s && s > t && f > t)
+		ft_rra(a);
+}
+
+void	sort_5(t_pile **a, t_pile **b)
+{
+	int	pos;
+
+	while (ft_lstsize(*a) > 3)
+	{
+		pos = find_min_pos(*a);
+		if (pos <= ft_lstsize(*a) / 2)
+			while (pos--)
+				ft_ra(a);
+		else
+			while (pos++ < ft_lstsize(*a))
+				ft_rra(a);
+		ft_pb(a, b);
+	}
+	sort_3(a);
+	ft_pa(a, b);
+	ft_pa(a, b);
 }
